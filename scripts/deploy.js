@@ -12,6 +12,23 @@ async function main() {
   // Print the contract address
   console.log(`Contract deployed to: ${myToken.target}`);
 
+  
+  if (network.config.chainId === 11155111 && process.env.ETHERSCAN_API_KEY) {
+    console.log("Waiting for block confirmations...")
+
+    await myToken.deploymentTransaction().wait(6)
+    await verify(myToken.target, [])
+  }
+  
+  const ownerBalance = await myToken.balanceOf("0xF94C794EC527Ab8489040F27E9592DE4F9b27E4B");
+  console.log(`Owner's Balance : ${ownerBalance}`);
+
+  const TxResponse = await myToken.earnAdditionalBalance(5);
+  await TxResponse.wait(1);
+
+  const ownerBalance2 = await myToken.balanceOf("0xF94C794EC527Ab8489040F27E9592DE4F9b27E4B");
+  console.log(`Owner's Balance : ${ownerBalance2}`);
+
   process.exit(0);
 }
 
