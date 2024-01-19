@@ -8,7 +8,7 @@ contract MyToken {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event AdditionalBalanceEarned(address indexed participant, uint256 value);
 
-    constructor() {
+    constructor()  {
         // Initialize anyone interacting with the contract with a balance of 5 tokens
         balances[msg.sender] = 5;
     }

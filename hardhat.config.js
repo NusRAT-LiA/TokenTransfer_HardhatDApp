@@ -22,7 +22,19 @@ module.exports = {
   etherscan: {
       apiKey: ETHERSCAN_API_KEY,
     },
-  solidity: "0.8.19",
+    solidity: {
+      compilers: [
+          {
+              version: "0.8.7",
+          },
+          {
+              version: "0.6.0",
+          },
+          {
+            version: "0.6.6",
+          },
+      ],
+  },
   namedAccounts: {
     deployer: {
         default: 0, // here this will by default take the first account as deployer from accounts: [PRIVATE_KEY] , its first key if given multiple
